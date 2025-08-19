@@ -1,6 +1,6 @@
 import { cn } from "../lib/utils";
 
-const MaxWidthWrap = ({
+const MaxWidthWrapper = ({
     className,
     children,
 }:{
@@ -14,4 +14,4 @@ const MaxWidthWrap = ({
     )
 }
 
-export default MaxWidthWrap;
+export default MaxWidthWrapper;
