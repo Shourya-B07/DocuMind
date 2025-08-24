@@ -7,6 +7,7 @@ import Providers from '@/components/Providers'
 
 import "react-loading-skeleton/dist/skeleton.css";
 import { Toaster } from "sonner";
+import 'simplebar-react/dist/simplebar.min.css';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

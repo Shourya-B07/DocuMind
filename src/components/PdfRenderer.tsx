@@ -30,7 +30,7 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
 
-import SimpleBar from 'simplebar-react'
+import SimpleBar from 'simplebar-react';
 import PdfFullscreen from './PdfFullscreen'
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
@@ -196,7 +196,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
               }
               onLoadError={() => {
                 toast.error('Something went wrong. Please try again later.')
-          return
+                return
               }}
               onLoadSuccess={({ numPages }) =>
                 setNumPages(numPages)
