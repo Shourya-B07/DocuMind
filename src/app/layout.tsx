@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import Providers from '@/components/Providers'
 
 import "react-loading-skeleton/dist/skeleton.css";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,7 @@ export default function RootLayout({
         <body className={cn('min-h-screen font-sans antialiased grainy',`${geistSans.variable} ${geistMono.variable} antialiased`
           
         )}>
+          <Toaster/>
           <Navbar />
           {children}
         </body>
