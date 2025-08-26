@@ -5,12 +5,13 @@ import {
   type FileRouter,
 } from 'uploadthing/next'
 
-import { PDFLoader } from 'langchain/document_loaders/fs/pdf'
-import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
-import { PineconeStore } from 'langchain/vectorstores/pinecone'
+import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
+import { OpenAIEmbeddings } from "@langchain/openai";
+import { PineconeStore } from "@langchain/pinecone";
 import { getPineconeClient } from '@/lib/pinecone'
 import { getUserSubscriptionPlan } from '@/lib/stripe'
 import { PLANS } from '@/config/stripe'
+import { UploadStatus } from '@prisma/client';
 
 const f = createUploadthing()
 
@@ -50,7 +51,7 @@ const onUploadComplete = async ({
       name: file.name,
       userId: metadata.userId,
       url: `https://uploadthing-prod.s3.us-west-2.amazonaws.com/${file.key}`,
-      uploadStatus: 'PROCESSING',
+      uploadStatus: UploadStatus.PROCESSING,
     },
   })
 
@@ -84,7 +85,7 @@ const onUploadComplete = async ({
     ) {
       await db.file.update({
         data: {
-          uploadStatus: 'FAILED',
+          uploadStatus: UploadStatus.FAILED,
         },
         where: {
           id: createdFile.id,
@@ -111,7 +112,7 @@ const onUploadComplete = async ({
 
     await db.file.update({
       data: {
-        uploadStatus: 'SUCCESS',
+        uploadStatus: UploadStatus.SUCCESS,
       },
       where: {
         id: createdFile.id,
@@ -120,7 +121,7 @@ const onUploadComplete = async ({
   } catch (err) {
     await db.file.update({
       data: {
-        uploadStatus: 'FAILED',
+        uploadStatus: UploadStatus.FAILED,
       },
       where: {
         id: createdFile.id,

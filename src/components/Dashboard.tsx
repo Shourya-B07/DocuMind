@@ -36,7 +36,7 @@ const Dashboard = () => {
                     My Pdfs
                 </h1>
 
-                <UploadButton />
+                <UploadButton isSubscribed={false} />
             </div>
 
             {files && files?.length !==0 ? (
