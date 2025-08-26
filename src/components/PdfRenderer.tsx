@@ -33,7 +33,6 @@ import {
 import SimpleBar from "simplebar-react"
 import PdfFullscreen from "./PdfFullscreen"
 
-// ✅ Ensure worker is only set in browser
 if (typeof window !== "undefined" && "Worker" in window) {
   pdfjs.GlobalWorkerOptions.workerSrc = "/pdfjs/pdf.worker.min.js"
 }

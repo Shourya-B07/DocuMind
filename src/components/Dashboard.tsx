@@ -42,7 +42,7 @@ const Dashboard = () => {
             {files && files?.length !==0 ? (
                 <ul className="mt-8 grid grid-cols-1 gap-6
                  divide-zinc-200 md:grid-cols-2 lg:grid-cols-3">
-                    {files.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map((file) => (
+                    {files.sort((a:any, b :any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map((file:any) => (
                         <li key={file.id} className='col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow transition hover:shadow-lg'> 
                             <Link href={`/dashboard/${file.id}`} className='flex flex-col gap-2'>
                                 <div className='pt-6 px-6 flex w-full items-center justify-between space-x-6'>

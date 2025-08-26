@@ -11,7 +11,6 @@ import { PineconeStore } from "@langchain/pinecone";
 import { getPineconeClient } from '@/lib/pinecone'
 import { getUserSubscriptionPlan } from '@/lib/stripe'
 import { PLANS } from '@/config/stripe'
-import { UploadStatus } from '@prisma/client';
 
 const f = createUploadthing()
 
@@ -51,7 +50,7 @@ const onUploadComplete = async ({
       name: file.name,
       userId: metadata.userId,
       url: `https://uploadthing-prod.s3.us-west-2.amazonaws.com/${file.key}`,
-      uploadStatus: UploadStatus.PROCESSING,
+      uploadStatus: 'PROCESSING',
     },
   })
 
@@ -85,7 +84,7 @@ const onUploadComplete = async ({
     ) {
       await db.file.update({
         data: {
-          uploadStatus: UploadStatus.FAILED,
+          uploadStatus: 'FAILED',
         },
         where: {
           id: createdFile.id,
@@ -112,7 +111,7 @@ const onUploadComplete = async ({
 
     await db.file.update({
       data: {
-        uploadStatus: UploadStatus.SUCCESS,
+        uploadStatus: 'SUCCESS',
       },
       where: {
         id: createdFile.id,
@@ -121,7 +120,7 @@ const onUploadComplete = async ({
   } catch (err) {
     await db.file.update({
       data: {
-        uploadStatus: UploadStatus.FAILED,
+        uploadStatus: 'FAILED',
       },
       where: {
         id: createdFile.id,
