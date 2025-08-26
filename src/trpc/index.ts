@@ -30,9 +30,8 @@ export const appRouter = router({
 
     return { success: true }
   }),
-  // @ts-ignore
-  getUserFiles: privateProcedure.query(async ({ ctx }) => {
-    const { userId } = ctx
+  getUserFiles: privateProcedure.query(async ({ ctx }:any) => {
+    const  {userId} = ctx
     
     return await db.file.findMany({
       where: {
@@ -40,7 +39,7 @@ export const appRouter = router({
       }
     })
   }),
-
+  
  getFileMessages: privateProcedure
     .input(
       z.object({
@@ -94,7 +93,7 @@ export const appRouter = router({
 
     getFileUploadStatus: privateProcedure
     .input(z.object({ fileId: z.string() }))
-    .query(async ({ input, ctx }: { input: { fileId: string }; ctx: { userId: string } }) => {
+    .query(async ({ input, ctx }:any) => {
       const file = await db.file.findFirst({
         where: {
           id: input.fileId,
@@ -107,7 +106,7 @@ export const appRouter = router({
       return { status: file.uploadStatus }
     }),
 
-  getFile: privateProcedure.input(z.object({ key: z.string() })).mutation(async ({ctx, input}) => {
+  getFile: privateProcedure.input(z.object({ key: z.string() })).mutation(async ({ctx, input}:any) => {
     const {userId} = ctx
 
     const file = await db.file.findFirst({

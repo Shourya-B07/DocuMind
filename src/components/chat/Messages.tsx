@@ -22,14 +22,14 @@ const Messages = ({ fileId }: MessagesProps) => {
         limit: INFINITE_QUERY_LIMIT,
       },
       {
-        getNextPageParam: (lastPage) =>
+        getNextPageParam: (lastPage:any) =>
           lastPage?.nextCursor,
-        keepPreviousData: true,
+          placeholderData: (prev) => prev,
       }
     )
 
   const messages = data?.pages.flatMap(
-    (page) => page.messages
+    (page:any) => page.messages
   )
 
   const loadingMessage = {

@@ -1,10 +1,11 @@
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
-import { initTRPC, TRPCError } from '@trpc/server';
+import { initTRPC, TRPCError } from '@trpc/server'
+
 
 const t = initTRPC.create();
 const middleware= t.middleware;
 
-const isAuth= middleware(async (opts) => {
+const isAuth= middleware(async (opts:any) => {
     const {getUser} = getKindeServerSession()
     const user = await getUser()
 
